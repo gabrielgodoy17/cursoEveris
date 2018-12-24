@@ -1,0 +1,136 @@
+FORMAT: 1A
+HOST: http://localhost:8080
+
+# ALUMNOS API_REST
+
+API REST ALUMNOS es una API desarrollada para gestion de entidades del tipo "Alumno". Desarrollada con framework SPRING 
+# Attributes of "Alumno" entity.
+
++ Alumno(objeto)
+    + id: (int)
+    + nombre: (string)
+    + apellido: (string)
+    + dni: (long)
+    + legajo: (long)
+    + regular: (boolean)
+    + genero: (int) 0->Genero_Hombre; 1->Genero_Mujer; 2->Sin_Genero 
+    
+## Get All Alumnos [GET] [localhost:8080/api/c1/alumnos/]
+You may get all "alumnos" from data base. You don't need put any parameters to obtain
+a response. This response is shown following:   
++ Response  (application/json)
+
+        [
+            {
+                "id": 1,
+                "dni": 45702,
+                "legajo": 1562,
+                "nombre": "Florencia",
+                "apellido": "Pincolini",
+                "regular": false,
+                "genero": "Genero_Mujer"
+            },
+            {
+                "id": 2,
+                "dni": 38101046,
+                "legajo": 1544,
+                "nombre": "Giuli",
+                "apellido": "Ruffini",
+                "regular": false,
+                "genero": "Genero_Mujer"
+            },
+            {
+                "id": 3,
+                "dni": 37738364,
+                "legajo": 10152,
+                "nombre": "Gabriel",
+                "apellido": "Godoy",
+                "regular": false,
+                "genero": "Genero_Hombre"
+            }
+        ]
+## Get One Alumno by "id" [GET] [localhost:8080/api/c1/alumnos/{id}]
+You may get only one "Alumno" from data base, using the id.
++ Parameters
+    + id: (int)
+    
++ Response (application/json)
+
+        [
+            {
+                "id": 1,
+                "dni": 45702,
+                "legajo": 1562,
+                "nombre": "Florencia",
+                "apellido": "Pincolini",
+                "regular": false,
+                "genero": "Genero_Mujer"
+            }
+        ]
+
+## Create a New Alumno [POST] [localhost:8080/api/c1/alumnos/post]
+
+You may create your own "alumno" using this action. It takes a JSON
+object containing a "alumno" with its attributes. (the "id" is not necessary, the Api will assign a new one)
+You have to indicate type of "genero" attribute with 0->Hombre; 1->Mujer; 2->Sin Genero
++ Request (application/json)
+
+            {
+                "dni": 4570232,
+                "legajo": 1562,
+                "nombre": "marcos",
+                "apellido": "garcia",
+                "regular": false,
+                "genero": 0
+            }
+
++ Response (application/json)
+Return the new Alumno created.
+
+                {
+                "id": 4,
+                "dni": 4570232,
+                "legajo": 1562,
+                "nombre": "marcos",
+                "apellido": "garcia",
+                "regular": false,
+                "genero": Sin_Genero
+                }
+
+##Update an Alumno created [PUT] [localhost:8080/api/c1/alumnos/put/{id}]
+You may update any attributes of an Alumno created. You have to indicate the id as
+parameter (pathVariable) and a request json is necessary.
+
++ Request (application/json)
+
+            {
+                "dni": 5570232,
+                "legajo": 1562,
+                "nombre": "MARCOS",
+                "apellido": "GARCIA",
+                "regular": false,
+                "genero": 2
+            }
+            
++ Response (application/json)
+Return the new Alumno updated.
+
+                {
+                "id": 4,
+                "dni": 5570232,
+                "legajo": 1562,
+                "nombre": "MARCOS",
+                "apellido": "GARCIA",
+                "regular": false,
+                "genero": "Sin_Genero"
+                
+##Delete an Alumno from data base [DELETE][localhost:8080/api/c1/alumnos/{id}]]
+You may delete an alumno by id number.
+
++ Parameter
+
+        + id:(int)
+        
++ Response (json)
+
+        +"Alumno with id: "id" was deleted"
